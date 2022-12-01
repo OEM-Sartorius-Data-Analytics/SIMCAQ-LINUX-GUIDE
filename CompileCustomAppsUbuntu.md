@@ -29,8 +29,6 @@ We will use the following application example, a kind of hello world, let's name
 
 int main()
 {
-  std::cout<<"Hi! "<<sqrt(100)<<std::endl;
-
   SQ_Bool bValid;
 
   if (SQ_IsLicenseFileValid(&bValid) != SQ_E_OK)
