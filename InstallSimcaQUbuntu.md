@@ -17,4 +17,23 @@ sudo apt-get update
 sudo apt-get install alien
 ```
 
+## Convert the .rpm package to .deb and subsequent installation of the .deb package
+
+- The delivered .rpm package will have a name similar to libsimcaq-17.0.0.0-1.x86_64.rpm. In order to convert it to a .deb package, just type in the terminal:
+```
+sudo alien <name of package>.rpm
+```
+a .deb package, with a name of libsimcaq-17.0.0.0-1.x86_64.deb or similar, should be at this stage in your working directory.
+
+- Then, you can istall directly the .deb package by:
+```
+sudo dpkg -i <name of package>.deb
+```
+
+## Direct installation of the .rpm package
+
+- Alien also allows the direct installation of .rpm packages. FOr this, just type in the terminal:
+```
+sudo alien -i <name of package>.rpm
+```
 
