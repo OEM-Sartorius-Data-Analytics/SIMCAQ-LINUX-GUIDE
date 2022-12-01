@@ -112,3 +112,27 @@ sqsample_LDFLAGS = @SIMCAQ_LIBS@
 sqsample_LDADD = @SIMCAQ_LIBS@
 ```
 
+You can then create *Makefile.in* simply by running:
+```
+automake -a
+```
+
+For creating the *Makefile*, run:
+```
+./configure PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+```
+
+To be able to run the application you need to have the path to your SIMCA-Q libraries in your LD_LIBRARY_PATH variable. Do this on the command-line:
+```
+export LD_LIBRARY_PATH=/usr/lib64
+```
+
+Now you can create the executable of your application just by running *make*:
+```
+make
+```
+
+FInally, you can run your app from the command line:
+```
+./sqsample
+```
