@@ -24,6 +24,7 @@ Then go to *https://license.x-formation.com/* and paste the activation key provi
 
 We will use the following application example, a kind of hello world, let's name it *sqsample.cpp*, to go through the building process:
 ```
+#include <iostream>
 #include "SQ.h"
 
 int main()
@@ -103,7 +104,7 @@ At this stage it is worth to create files named *README*, *AUTHORS*, *NEWS* and 
 touch README AUTHORS NEWS ChangeLog
 ```
 
-Makefile.am:
+The next step is to use another autotool, *automake*, to create a file named *Makefile.in* from a file name *Makefile.am* that needs to be created by you. Below you can find a simple *Makefile.am* that can be used to build our example application:
 ```
 bin_PROGRAMS = sqsample
 sqsample_CFLAGS = -pedantic @SIMCAQ_CFLAGS@
