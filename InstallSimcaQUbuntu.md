@@ -37,3 +37,8 @@ sudo dpkg -i <name of package>.deb
 sudo alien -i <name of package>.rpm
 ```
 
+## After installation
+
+After installation, you will should be able to find SIMCA-Q header files in */usr/include/*, with names like *SQ.h*, *SIMCAQM.h*, *SIMCAQP.h*, etc. In */usr/lib64/* you should find the libraries that
+you will need to link to when compiling your application. Some help files in html format will also be available in */usr/share/doc/libsimcaq/*. It is worth to check these locations, especially that
+of the libraries, as the specific location will probably be needed when compiling your application.
