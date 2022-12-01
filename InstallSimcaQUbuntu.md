@@ -1,0 +1,1 @@
+# Install SIMCA-Q in Ubuntu
