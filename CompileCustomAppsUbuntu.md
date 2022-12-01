@@ -1,4 +1,4 @@
-# Build Custom C++/SIMCA-Q Applications in Ubuntu with GNU tools
+# Build Custom C++/SIMCA-Q Applications in Ubuntu with GNU Autotools
 
 ## Getting ready
 
@@ -56,10 +56,10 @@ It's an easy to read example that will first try to find a license in your proje
 
 At the top we can see that we included the header *SQ.h*. This is one of the headers that can be found in */usr/include/*. This is a general header that includes all other SIMCA-Q headers. Of course, you could decide to include only the headers of relevance for your application. For this, just have a look at the SIMCA-Q headers within the mentioned folder.
 
-configure.ac:
+Building the application will require several steps. One is to generate an executable named *configure* that will probe your platform and assist in editing the Makefile. GNU autotools include the command *autoconf* that facilitates the generation of the *configure* executable. For this, we first need to write a file named *configure.ac* that contains several commands to be executed by *autoconf*. Let's have a look at a simple *configure.ac* that can be used within the context of our example:
 ```
-AC_INIT([sqsample0], [1.0])
-AC_CONFIG_SRCDIR([sqsample0.cpp])
+AC_INIT([sqsample], [1.0])
+AC_CONFIG_SRCDIR([sqsample.cpp])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
 AC_LANG(C)
@@ -75,12 +75,18 @@ AC_SUBST([SIMCAQ_LIBS])
 AC_OUTPUT
 ```
 
+Every *configure.ac* script must call *AC_INIT* before doing anything else that produces output. Arguments for *AC_INIT* define certain macros, variables and preprocessor symbols, like in the example above where we passed as arguments the name of the package and its version. *AC_CONFIG_SRCDIR* will tell *configure* to check for the existence of the directory of the file passed as an argument. *AM_INIT_AUTOMAKE* runs many macros required for proper operation of the generated Makefiles.
+
+*PKG_PROG_PKG_CONFIG* checks for an implementation of pkg-config.
+
+*PKG_CHECK_MODULES(SIMCAQ, [simcaq])* looks for a version of SIMCA-Q, which will be hold by the SIMCAQ variable.
+
 Makefile.am:
 ```
 bin_PROGRAMS = sqsample
 sqsample_CFLAGS = -pedantic @SIMCAQ_CFLAGS@
 sqsample_CXXFLAGS = @SIMCAQ_CFLAGS@
-sqsample_SOURCES = sqsample0.cpp
+sqsample_SOURCES = sqsample.cpp
 sqsample_LDFLAGS = @SIMCAQ_LIBS@
 sqsample_LDADD = @SIMCAQ_LIBS@
 ```
