@@ -56,30 +56,52 @@ It's an easy to read example that will first try to find a license in your proje
 
 At the top we can see that we included the header *SQ.h*. This is one of the headers that can be found in */usr/include/*. This is a general header that includes all other SIMCA-Q headers. Of course, you could decide to include only the headers of relevance for your application. For this, just have a look at the SIMCA-Q headers within the mentioned folder.
 
-Building the application will require several steps. One is to generate an executable named *configure* that will probe your platform and assist in editing the Makefile. GNU autotools include the command *autoconf* that facilitates the generation of the *configure* executable. For this, we first need to write a file named *configure.ac* that contains several commands to be executed by *autoconf*. Let's have a look at a simple *configure.ac* that can be used within the context of our example:
+Building the application will require several steps. One is to generate an executable named *configure* that will probe your platform and assist in editing the Makefile. GNU autotools include the commands *aclocal* and *autoconf* that facilitates the generation of the *configure* executable. The first step consists in running the command *aclocal* from the terminal within the main application folder. *aclocal* installs a file called *aclocal.m4*, which contains the definitions of any *autoconf* macros that happen to be in use in *configure.ac* (see below). *aclocal* will include the macros defined in *acinclude.m4* automatically.
+
+The next step is to write a file named *configure.ac* that contains several commands to be executed by *autoconf*. Let's have a look at a simple *configure.ac* that can be used within the context of our example:
 ```
 AC_INIT([sqsample], [1.0])
 AC_CONFIG_SRCDIR([sqsample.cpp])
 AM_INIT_AUTOMAKE
-AC_CONFIG_HEADERS([config.h])
-AC_LANG(C)
-AC_PROG_CC
+AC_LANG([C++])
 AC_PROG_CXX
 AC_PROG_INSTALL
-AM_PROG_CC_C_O
 PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 PKG_CHECK_MODULES(SIMCAQ, [simcaq])
 AC_SUBST([SIMCAQ_CFLAGS])
 AC_SUBST([SIMCAQ_LIBS])
-AC_OUTPUT
+AC_OUTPUT(Makefile)
 ```
 
-Every *configure.ac* script must call *AC_INIT* before doing anything else that produces output. Arguments for *AC_INIT* define certain macros, variables and preprocessor symbols, like in the example above where we passed as arguments the name of the package and its version. *AC_CONFIG_SRCDIR* will tell *configure* to check for the existence of the directory of the file passed as an argument. *AM_INIT_AUTOMAKE* runs many macros required for proper operation of the generated Makefiles.
+Every *configure.ac* script must call *AC_INIT* before doing anything else that produces output. Arguments for *AC_INIT* define certain macros, variables and preprocessor symbols, like in the example above where we passed as arguments the name of the package and its version.
+
+*AC_CONFIG_SRCDIR* will tell *configure* to check for the existence of the directory of the file passed as an argument.
+
+*AM_INIT_AUTOMAKE* runs many macros required for proper operation of the generated Makefiles.
+
+*AC_LANG([C++])* does compilation tests using CXX and CXXCPP.
+
+*AC_PROG_CXX* checks to see which C++ compiler you have. 
+
+*AC_PROG_INSTALL* sets the output variable INSTALL to the name of a BSD-compatible install program, if one is found in the current PATH. 
 
 *PKG_PROG_PKG_CONFIG* checks for an implementation of pkg-config.
 
 *PKG_CHECK_MODULES(SIMCAQ, [simcaq])* looks for a version of SIMCA-Q, which will be hold by the SIMCAQ variable.
+
+*AC_SUBST([SIMCAQ_CFLAGS])*
+
+*AC_SUBST([SIMCAQ_LIBS])*
+
+*AC_OUTPUT(Makefile)*
+
+We can now run the *autoconf* command that will generate the *configure* executable file.
+
+At this stage it is worth to create files named *README*, *AUTHORS*, *NEWS* and *ChangeLog*. While including these files is not critical, they are required by GNU coding standards and even more *make distcheck* will fail if they do not exist. For creating them you can just run:
+```
+touch README AUTHORS NEWS ChangeLog
+```
 
 Makefile.am:
 ```
