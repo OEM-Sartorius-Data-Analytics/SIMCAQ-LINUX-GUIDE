@@ -22,7 +22,7 @@ Then go to *https://license.x-formation.com/* and paste the activation key provi
 
 ## An example
 
-We will use the following application example, a kind of hello world, to go through the building process:
+We will use the following application example, a kind of hello world, let's name it *sqsample.cpp*, to go through the building process:
 ```
 #include "SQ.h"
 
@@ -51,3 +51,37 @@ int main()
   return 0;
 }
 ```
+
+It's an easy to read example that will first try to find a license in your project and then find (and print) whether the license is valid or not.
+
+At the top we can see that we included the header *SQ.h*. This is one of the headers that can be found in */usr/include/*. This is a general header that includes all other SIMCA-Q headers. Of course, you could decide to include only the headers of relevance for your application. For this, just have a look at the SIMCA-Q headers within the mentioned folder.
+
+configure.ac:
+```
+AC_INIT([sqsample0], [1.0])
+AC_CONFIG_SRCDIR([sqsample0.cpp])
+AM_INIT_AUTOMAKE
+AC_CONFIG_HEADERS([config.h])
+AC_LANG(C)
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_INSTALL
+AM_PROG_CC_C_O
+PKG_PROG_PKG_CONFIG
+PKG_INSTALLDIR
+PKG_CHECK_MODULES(SIMCAQ, [simcaq])
+AC_SUBST([SIMCAQ_CFLAGS])
+AC_SUBST([SIMCAQ_LIBS])
+AC_OUTPUT
+```
+
+Makefile.am:
+```
+bin_PROGRAMS = sqsample
+sqsample_CFLAGS = -pedantic @SIMCAQ_CFLAGS@
+sqsample_CXXFLAGS = @SIMCAQ_CFLAGS@
+sqsample_SOURCES = sqsample0.cpp
+sqsample_LDFLAGS = @SIMCAQ_LIBS@
+sqsample_LDADD = @SIMCAQ_LIBS@
+```
+
