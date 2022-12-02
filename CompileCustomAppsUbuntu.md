@@ -70,7 +70,8 @@ PKG_INSTALLDIR
 PKG_CHECK_MODULES(SIMCAQ, [simcaq])
 AC_SUBST([SIMCAQ_CFLAGS])
 AC_SUBST([SIMCAQ_LIBS])
-AC_OUTPUT(Makefile)
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
 ```
 
 Every *configure.ac* script must call *AC_INIT* before doing anything else that produces output. Arguments for *AC_INIT* define certain macros, variables and preprocessor symbols, like in the example above where we passed as arguments the name of the package and its version.
@@ -83,7 +84,7 @@ Every *configure.ac* script must call *AC_INIT* before doing anything else that 
 
 *AC_PROG_CXX* checks to see which C++ compiler you have. 
 
-*AC_PROG_INSTALL* sets the output variable INSTALL to the name of a BSD-compatible install program, if one is found in the current PATH. 
+*AC_PROG_INSTALL* sets the output variable INSTALL to the name of a BSD-compatible install program, if one is found in the current PATH. If not then it uses install-sh which automake will install at the root of your package directory if it's not there yet. 
 
 *PKG_PROG_PKG_CONFIG* checks for an implementation of pkg-config.
 
