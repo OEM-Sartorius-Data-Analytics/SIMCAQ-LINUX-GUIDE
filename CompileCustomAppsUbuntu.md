@@ -5,7 +5,7 @@
 In */usr/share/libsimcaq/examples/* you find examples of SIMC-Q applications with files that you can use as templates. Among them, we suggest that you copy **_acinclude.m4_** to the folder of your source code.
 **_acinclude.m4_** contains macros that you can use for linking SIMCA-Q libraries.
 
-You will also need *pkg-config*, which is usually not shipped with fresh Ubuntu installations. To install it just run:
+You will also need *pkg-config*. *pkg-config* provides the necessary details for compiling and linking a program to a library. This metadata is stored in pkg-config files. After installing SIMCA-Q in Ubuntu, you should be able to find in */usr/lib64/pkgconfig/* a file named *simcaq.pc* that will help you to link SIMCA-Q to your custom application. *pkg-config* is usually not shipped with fresh Ubuntu installations. To install it just run:
 ```
 sudo apt-get update -y
 sudo apt-get install -y pkg-config
@@ -90,11 +90,11 @@ Every *configure.ac* script must call *AC_INIT* before doing anything else that 
 
 *PKG_CHECK_MODULES(SIMCAQ, [simcaq])* looks for a version of SIMCA-Q, which will be hold by the SIMCAQ variable.
 
-*AC_SUBST([SIMCAQ_CFLAGS])*
+By including *AC_SUBST([SIMCAQ_CFLAGS])* and *AC_SUBST([SIMCAQ_LIBS])*, every occurrence of @SIMCAQ_CFLAGS@ and @SIMCAQ_LIBS@ in all files used at later stages will be substituted by the values for Libs and Cflags defined in */usr/lib64/pkgconfig/simcaq.pc*.
 
-*AC_SUBST([SIMCAQ_LIBS])*
+*AC_CONFIG_FILES([Makefile])* will make *AC_OUTPUT* create a Makefile.
 
-*AC_OUTPUT(Makefile)*
+*AC_OUTPUT*: every *configure.ac* should finish by calling this macro, which will generate a file named *config.status* and launch it. *config.status* will then perform all configuration actions.
 
 We can now run the *autoconf* command that will generate the *configure* executable file.
 
@@ -133,7 +133,7 @@ Now you can create the executable of your application just by running *make*:
 make
 ```
 
-FInally, you can run your app from the command line:
+Finally, you can run your app from the command line:
 ```
 ./sqsample
 ```
