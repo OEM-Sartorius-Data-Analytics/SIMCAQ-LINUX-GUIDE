@@ -55,7 +55,11 @@ It's an easy to read example that will first try to find a license in your proje
 
 At the top we can see that we included the header *SQ.h*. This is one of the headers that can be found in */usr/include/*. This is a general header that includes all other SIMCA-Q headers. Of course, you could decide to include only the headers of relevance for your application. For this, just have a look at the SIMCA-Q headers within the mentioned folder.
 
+### Building the application
+
 Building the application will require several steps. One is to generate an executable named *configure* that will probe your platform and assist in editing the Makefile. GNU autotools include the commands *aclocal* and *autoconf* that facilitates the generation of the *configure* executable. The first step consists in running the command *aclocal* from the terminal within the main application folder. *aclocal* installs a file called *aclocal.m4*, which contains the definitions of any *autoconf* macros that happen to be in use in *configure.ac* (see below). *aclocal* will include the macros defined in *acinclude.m4* automatically.
+
+#### A simple configure.ac file
 
 The next step is to write a file named *configure.ac* that contains several commands to be executed by *autoconf*. Let's have a look at a simple *configure.ac* that can be used within the context of our example:
 ```
@@ -102,6 +106,7 @@ At this stage it is worth to create files named *README*, *AUTHORS*, *NEWS* and 
 ```
 touch README AUTHORS NEWS ChangeLog
 ```
+#### A simple Makefile.am file
 
 The next step is to use another autotool, *automake*, to create a file named *Makefile.in* from a file name *Makefile.am* that needs to be created by you. Below you can find a simple *Makefile.am* that can be used to build our example application:
 ```
@@ -112,6 +117,10 @@ sqsample_SOURCES = sqsample.cpp
 sqsample_LDFLAGS = @SIMCAQ_LIBS@
 sqsample_LDADD = @SIMCAQ_LIBS@
 ```
+
+*bin_PROGRAMS = sqsample* specifies the name of the final executable i.e., *sqsample* in this case.
+
+#### Using autotools to build the executable
 
 You can then create *Makefile.in* simply by running:
 ```
