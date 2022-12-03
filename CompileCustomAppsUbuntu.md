@@ -120,6 +120,18 @@ sqsample_LDADD = @SIMCAQ_LIBS@
 
 *bin_PROGRAMS = sqsample* specifies the name of the final executable i.e., *sqsample* in this case.
 
+In *Makefile.am*, associated with each program are several assisting variables that are named after the program name followed by underscore e.g. in our case *sqsample_<VariableName>*.
+
+The *CFLAGS* assignment ...
+
+The *CXXFLAGS* assignment adds compilation flags to be used when compiling CXX (C++) files.
+
+*sqsample_SOURCES = sqsample.cpp* specifies the source file that composes the program. In our case it was just *sqsample.cpp*, but here you should include any other files and headers of your app.
+
+The *LDFLAGS* assignment is where you insert the -L flags that are needed by the compiler when it links all the object files to an executable.
+
+The *LDADD* assignment is where you list a long set of installed libraries that you want to link in with all of your executables. 
+
 #### Using autotools to build the executable
 
 You can then create *Makefile.in* simply by running:
