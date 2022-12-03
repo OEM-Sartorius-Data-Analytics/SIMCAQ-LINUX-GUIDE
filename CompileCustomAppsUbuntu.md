@@ -144,7 +144,7 @@ For creating the *Makefile*, run:
 ./configure PKG_CONFIG_PATH=/usr/lib64/pkgconfig
 ```
 
-To be able to run the application you need to have the path to your SIMCA-Q libraries in your LD_LIBRARY_PATH variable. Do this on the command-line:
+To be able to run the application you need to have the path to your SIMCA-Q libraries in your LD_LIBRARY_PATH variable. LD_LIBRARY_PATH tois an environmental variable that tells dynamic link loader, a small program that begins all your applications, where to look for dynamic shared libraries that an application was linked with. Do this on the command-line:
 ```
 export LD_LIBRARY_PATH=/usr/lib64
 ```
