@@ -30,7 +30,7 @@ RUN alien -i /SimcaQ/libsimcaq-17.0.0.0-1.x86_64.rpm
 
 Then build the image e.g., with name *ubuntu2204_simcaq17*:
 ```
-docker image build -t ubuntu2204_simcaq17 .
+docker build -t ubuntu2204_simcaq17 .
 ```
 
 ## Docker image for the sample SIMCA-Q app
@@ -41,9 +41,12 @@ Create a folder that contains the following files:
 - The files *acinclude.m4*, *configure.ac*, *Makefile.am* detailed in the previous [example](CompileCustomAppsUbuntu.md).
 - You need to include also a license file *license_name.$Q*. As SIMCA-Q will recognize containers built from different images as different, you will need a specific license that will not check the host id. Contact Sartorius for this possibility.
 
-Then, create a Dockerfile with the following content:
+Then, create within the same folder a Dockerfile with the following content:
 ```
 FROM ubuntu2204_simcaq17
+
+LABEL author="xxx"
+LABEL description="SIMCA-Q App on Ubuntu 22.04"
 
 RUN mkdir SampleApp
 
@@ -69,4 +72,16 @@ RUN make
 
 # If you want your containers to run automatically the app:
 # CMD ./sqsample
+```
+
+To build the image e.g., with a name sample_app_image, run:
+```
+docker build -t sample_app_image .
+```
+
+## Running the SIMCA-Q app image inside a container
+
+For example run:
+```
+docker run --name sample_app_container sample_app_image
 ```
