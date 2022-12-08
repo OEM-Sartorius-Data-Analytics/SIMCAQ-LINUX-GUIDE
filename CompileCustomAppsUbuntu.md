@@ -100,22 +100,6 @@ By including *AC_SUBST([SIMCAQ_CFLAGS])* and *AC_SUBST([SIMCAQ_LIBS])*, every oc
 
 *AC_OUTPUT*: every *configure.ac* should finish by calling this macro, which will generate a file named *config.status* and launch it. *config.status* will then perform all configuration actions.
 
-With *configure.ac* ready, we run the aclocal command:
-```
-aclocal
-```
-
-*aclocal* generates, based on the contents of *configure.ac*, a file named *aclocal.m4* that includes several macros needed to build your app. *aclocal.m4* wil automatically include the contents of *acinclude.m4*.
-
-We can now run the *autoconf* command that will generate the *configure* executable file:
-```
-autoconf
-```
-
-At this stage it is worth to create files named *README*, *AUTHORS*, *NEWS* and *ChangeLog*. While including these files is not critical, they are required by GNU coding standards and even more *make distcheck* will fail if they do not exist. For creating them you can just run:
-```
-touch README AUTHORS NEWS ChangeLog
-```
 #### A simple Makefile.am file
 
 The next step is to use another autotool, *automake*, to create a file named *Makefile.in* from a file name *Makefile.am* that needs to be created by you. Below you can find a simple *Makefile.am* that can be used to build our example application:
@@ -143,6 +127,23 @@ The *LDFLAGS* assignment is where you insert the -L flags that are needed by the
 The *LDADD* assignment is where you list a long set of installed libraries that you want to link in with all of your executables. 
 
 #### Using autotools to build the executable
+
+With *configure.ac* ready, we run the *aclocal* command:
+```
+aclocal
+```
+
+*aclocal* generates, based on the contents of *configure.ac*, a file named *aclocal.m4* that includes several macros needed to build your app. *aclocal.m4* wil automatically include the contents of *acinclude.m4*.
+
+We can now run the *autoconf* command that will generate the *configure* executable file:
+```
+autoconf
+```
+
+At this stage it is worth to create files named *README*, *AUTHORS*, *NEWS* and *ChangeLog*. While including these files is not critical, they are required by GNU coding standards and even more *make distcheck* will fail if they do not exist. For creating them you can just run:
+```
+touch README AUTHORS NEWS ChangeLog
+```
 
 You can then create *Makefile.in* simply by running:
 ```
