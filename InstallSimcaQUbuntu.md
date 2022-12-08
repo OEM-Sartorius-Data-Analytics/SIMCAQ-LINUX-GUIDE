@@ -24,7 +24,7 @@ sudo apt-get install alien
 ```
 sudo alien <name of package>.rpm
 ```
-a .deb package, with a name of libsimcaq-17.0.0.0-1.x86_64.deb or similar, should be at this stage in your working directory.
+A .deb package, with a name of libsimcaq-17.0.0.0-1.x86_64.deb or similar, should be at this stage in your working directory.
 
 - Then, you can istall directly the .deb package by:
 ```
