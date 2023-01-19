@@ -1,4 +1,4 @@
-# Build C++/SIMCA-Q applications: Basics
+# Build SIMCA-Q applications: Basics
 
 ## Getting ready
 
@@ -18,7 +18,7 @@ In order to get a license file, you will need the host ID of your machine. You c
 sqhostid
 ```
 
-Then go to *https://license.x-formation.com/* and paste the activation key provided with SIMCA-Q. This will take you to a different page where you will be able to paste the host ID and download a license file. Then you can either copy the license file to the folder with your source code or set the environment variable SIMCAQLICENSE to the path where your license file is.
+Then go to [https://license.x-formation.com/](https://license.x-formation.com/) and paste the activation key provided with SIMCA-Q. This will take you to a different page where you will be able to paste the host ID and download a license file. Then you can either copy the license file to the folder with your source code or set the environment variable SIMCAQLICENSE to the path where your license file is.
 
 ## An example
 
