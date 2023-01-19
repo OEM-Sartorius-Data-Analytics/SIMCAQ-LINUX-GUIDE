@@ -1,8 +1,8 @@
-# Build Custom C++/SIMCA-Q Applications in Ubuntu with GNU Autotools
+# Build C++/SIMCA-Q applications: Basics
 
 ## Getting ready
 
-In */usr/share/libsimcaq/examples/* you find examples of SIMC-Q applications with files that you can use as templates. Among them, we suggest that you copy **_acinclude.m4_** to the folder of your source code.
+In */usr/share/libsimcaq/examples/* you find examples of SIMCA-Q applications with files that you can use as templates. Among them, we suggest that you copy **_acinclude.m4_** to the folder of your source code.
 **_acinclude.m4_** contains macros that you can use for linking SIMCA-Q libraries.
 
 You will also need *pkg-config*. *pkg-config* provides the necessary details for compiling and linking a program to a library. This metadata is stored in pkg-config files. After installing SIMCA-Q in Ubuntu, you should be able to find in */usr/lib64/pkgconfig/* a file named *simcaq.pc* that will help you to link SIMCA-Q to your custom application. *pkg-config* is usually not shipped with fresh Ubuntu installations. To install it just run:
