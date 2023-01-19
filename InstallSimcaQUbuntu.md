@@ -18,7 +18,9 @@ Then you can install the *Alien* package with:
 sudo apt-get install alien
 ```
 
-## Convert the SIMCA-Q *.rpm* package to a *.deb* package and subsequent installation with *dpkg*
+## Installing SIMCA-Q
+
+### Convert the SIMCA-Q *.rpm* package to a *.deb* package and subsequent installation with *dpkg*
 
 After purchase, you should receive from Sartorius a *.rpm* package with a name similar to *libsimcaq-17.0.0.0-1.x86_64.rpm*. In order to convert it to a *.deb* package, just type in a terminal:
 ```
@@ -31,7 +33,7 @@ Then, you can istall directly the *.deb* package by:
 sudo dpkg -i <name of package>.deb
 ```
 
-## Direct installation of the .rpm package
+### Direct installation of the .rpm package
 
 Alien also allows the direct installation of .rpm packages. For this, just type in the terminal:
 ```
@@ -40,6 +42,6 @@ sudo alien -i <name of package>.rpm
 
 ## After installation
 
-After installation, you will should be able to find SIMCA-Q header files in */usr/include/*, with names like *SQ.h*, *SIMCAQM.h*, *SIMCAQP.h*, etc. In */usr/lib64/* you should find the libraries that
-you will need to link to when compiling your application. Some help files in html format will also be available in */usr/share/doc/libsimcaq/*. Finally, some examples will be available in
-*/usr/share/libsimcaq/examples/*. It is worth to check these locations, especially that of the libraries, as the specific location might be needed when compiling your SIMCA-Q applications.
+After installation, you will should be able to find SIMCA-Q header files in */usr/include/*, with names like *SQ.h*, *SIMCAQM.h*, *SIMCAQP.h*, etc. In */usr/lib64/* you should find the libraries that you will need to link to when compiling your application. It is worth to check these locations, especially that of the libraries, as the specific location might be needed when compiling your SIMCA-Q applications.
+
+Some help files in html format will also be available in */usr/share/doc/libsimcaq/*. Finally, some examples will be available in */usr/share/libsimcaq/examples/*. 
