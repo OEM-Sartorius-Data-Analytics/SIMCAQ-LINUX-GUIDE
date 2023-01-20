@@ -26,7 +26,7 @@ When compiling, or actually during the previous step called preprocessing, the G
 g++ -I<headers_folder> ...
 ```
 
-To build an executable application, after compiling/assemblying the code you would need to link the resulting object file(s) with the SIMCA-Q shared library. As mentioned above, at least in latest Ubuntu versions you will find the library in */usr/lib64/*, which is not at the time of writing  this guide a standard location where GNU compilers will look for libraries. Thus, at the time of linking you will need to explicetly provide the location of the library. You can do it by passing the *-L<library_folder>* flag. You will actually need to pass the name of the SIMCA-Q shared library as well using the *-l* flag. Explicetely, you will need to pass *-lsimcaq* if the name of the library is *libsimcaq.so*. This is beacause GNU compilers already assume that libraries start with *lib* and end with *.so*.
+To build an executable application, after compiling/assemblying the code you would need to link the resulting object file(s) with the SIMCA-Q shared library. As mentioned above, at least in latest Ubuntu versions you will find the library in */usr/lib64/*, which is not at the time of writing  this guide a standard location where GNU compilers will look for libraries. Thus, at the time of linking you will need to explicetly provide the location of the library. You can do it by passing the *-L<library_folder>* flag. You will actually need to pass the name of the SIMCA-Q shared library as well using the *-l* flag. Explicetely, you will need to pass *-lsimcaq* if the name of the library is *libsimcaq.so*. This is beacause GNU compilers already assume that libraries start with *lib* and end with *.so*. You should always make sure that the *-L* flag appears before the *-l* flag. 
 
 ### Simplest case: only one source code file
 
@@ -66,6 +66,17 @@ Let's say that your main function is in a file named *main.cpp* and then you hav
 g++ -L/usr/lib64 -o sqsample main.cpp additionalCode.cpp -lsimcaq
 ```
 
-However, in cases where the number of source and header files increases, you will probably want to compile and like in different stages. For instance, let's assume that you have the main function in *main.cpp* and then different functions implemented in the source files *additionalCode1.cpp*, *additionalCode2.cpp* and *additionalCode3.cpp* with corresponding header files *addtionalCode1.h*, *addtionalCode2.h* and *addtionalCode3.h*. In such cases, we can instead compile every file separately into intermediate files called *object files* by passing the *-c* flag to the compiler
+However, in cases where the number of source and header files increases, you will probably want to compile and like in different stages. For instance, let's assume that you have the main function in *main.cpp* and then different functions implemented in the source files *additionalCode1.cpp*, *additionalCode2.cpp* and *additionalCode3.cpp* with corresponding header files *addtionalCode1.h*, *addtionalCode2.h* and *addtionalCode3.h*. In such cases, we can instead compile every file separately into intermediate files called *object files* by passing the *-c* flag to the compiler:
+```
+g++ -c additionalCode1.cpp
+g++ -c additionalCode2.cpp
+g++ -c additionalCode3.cpp
+g++ -c main.cpp
+```
 
-In case your source code is within more than one file you will need to compile and link separately. 
+This will generate the object files *main.o*, *additionalCode1.o*, *additionalCode2.o* and *additionalCode3.o*. This will work if the headers, both those for the additional source files and those of SIMCA-Q, are in standard directories. Otherwise just provide the locations with the *-I* flag. Once the object files are generated you can build the application by linking the SIMCA-Q library. For instance, to generate an executable named *sqsample*:
+```
+g++ -L/usr/lib64 -rpath=/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o-lsimcaq
+```
+
+
