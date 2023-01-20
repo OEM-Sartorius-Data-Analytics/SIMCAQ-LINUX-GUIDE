@@ -52,7 +52,7 @@ g++ -L/usr/lib64 -Wl,-rpath=/usr/lib64 -o sqsample sqsample.cpp -lsimcaq
 
 However, if you are working in C and, therefore, choosing to use the *gcc* compiler, use:
 ```
-g++ -L/usr/lib64 -rpath=/usr/lib64 -o sqsample sqsample.c -lsimcaq
+gcc -L/usr/lib64 -rpath=/usr/lib64 -o sqsample sqsample.c -lsimcaq
 ```
 
 Now you should be able to run your application.
