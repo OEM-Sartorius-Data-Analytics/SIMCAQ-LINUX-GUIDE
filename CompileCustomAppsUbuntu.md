@@ -98,23 +98,23 @@ target: dependencies
 all: sqsample
 
 sqsample: main.o additionalCode1.o additionalCode3.o additionalCode3.o
-	  g++ -L/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o -lsimcaq
+    g++ -L/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o -lsimcaq
 
 additionalCode1.o: additionalCode1.cpp additionalCode1.h
-		   g++ -c additionalCode1.cpp
+    g++ -c additionalCode1.cpp
 
 additionalCode2.o: additionalCode2.cpp additionalCode2.h
-		   g++ -c additionalCode2.cpp
+    g++ -c additionalCode2.cpp
 
 additionalCode3.o: additionalCode3.cpp additionalCode3.h
-		   g++ -c additionalCode3.cpp
+    g++ -c additionalCode3.cpp
 
 main.o: main.cpp
-	g++ -c main.cpp
+    g++ -c main.cpp
 
 .PHONY: clean
 clean:
-	rm *.o sqsample
+    rm *.o sqsample
 ```
 
 If we run *make* without any arguments, the first target of the *Makefile* will be executed, in this case *all*. *all* has *sqsample* as a dependence. So, *make* will look for a rule to create *sqsample*. It will then find that the target *sqsample* has four dependencies, the object files *main.o*, *additionalCode1.o*, *additionalCode3.o* and *additionalCode3.o*. Subsequently, it will look for rules for these dependencies. For instance, for *additionalCode1.o* it will find the dependencies *additionalCode1.cpp* and *additionalCode1.h*. If any of these files is newer than *additionalCode1.o*, or if *additionalCode1.o* does not exist, it will execute the command *g++ -c additionalCode1.cpp*. Same will apply for all other rules.
