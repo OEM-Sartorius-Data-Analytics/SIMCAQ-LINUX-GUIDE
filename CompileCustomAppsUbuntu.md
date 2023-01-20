@@ -6,7 +6,7 @@ As mentioned in the [previous section](https://github.com/OEM-Sartorius-Data-Ana
 
 ### License
 
-Tou will also need a valid license file to be able to run your application. If you did not get one directly from Sartorius, but instead you got an activation key, the process is as follows:
+You will also need a valid license file to be able to run your application. If you did not get one directly from Sartorius, but instead you got an activation key, the process is as follows:
 
 - You will first need the host ID of your machine. You can obtain it by running in a terminal:
 ```
@@ -32,7 +32,7 @@ To build an executable application, after compiling/assemblying the code you wou
 
 Let's say that you have all the source code for your SIMCA-Q application within one file, let's name it *sqsample.cpp*. In this case you can compile and link simultaneously. For instance, to get an executable named *sqsample*, just run:
 ```
-g++ -o -L/usr/lib64 sqsample sqsample.cpp -lsimcaq
+g++ -L/usr/lib64 -o sqsample sqsample.cpp -lsimcaq
 ```
 
 If your code is bug-free, with this you would have successfully built your application. You could try to run it now by:
@@ -45,12 +45,19 @@ But this will fail as the SIMCA-Q library was not installed in a standard direct
 export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 ```
 
-A different option is to use the *-rpath* flag during the linking stage:
+A different option is to use the *-rpath* flag during the linking stage. If you are using the *g++* compiler, you could do it by:
 ```
-g++ -o -L/usr/lib64 -rpath=/usr/lib64 sqsample sqsample.cpp -lsimcaq
+g++ -L/usr/lib64 -Wl,-rpath=/usr/lib64 -o sqsample sqsample.cpp -lsimcaq
+```
+
+However, if you are working in C and, therefore, choosing to use the *gcc* compiler, use:
+```
+g++ -L/usr/lib64 -rpath=/usr/lib64 -o sqsample sqsample.c -lsimcaq
 ```
 
 Now you should be able to run your application.
+
+For simplicity, in the rest of this section we will assume that you are using the LD_LIBRARY_PATH option so compiling linking commands will not show up the *-rpath* flag.
 
 ### More than one source code files
 
