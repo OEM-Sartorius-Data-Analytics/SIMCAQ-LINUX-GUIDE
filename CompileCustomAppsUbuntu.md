@@ -17,7 +17,7 @@ sqhostid
 
 Once you have the license file, you can either copy it to the folder where you main executable is or set the environment variable SIMCAQLICENSE to the path where your license file is.
 
-## Build a simple SIMCA-Q application with GNU compilers
+## Build a SIMCA-Q application with GNU compilers
 
 Installing SIMCA-Q on Linux systems provides you with a shared C library that you can link to when building your application. Thus, so far you will be limited to writing your applications in the C or C++ languages. In this section we will cover how to build these applications with the GNU compilers *gcc* (for C programs) and *g++* for (C++) programs. For examples in this section we will be referring to the *g++* compiler, but the same workflow would apply to cases where you would be working strictly with C code and where you would you the *gcc* compiler instead.
 
@@ -76,7 +76,7 @@ g++ -c main.cpp
 
 This will generate the object files *main.o*, *additionalCode1.o*, *additionalCode2.o* and *additionalCode3.o*. This will work if the headers, both those for the additional source files and those of SIMCA-Q, are in standard directories. Otherwise just provide the locations with the *-I* flag. Once the object files are generated you can build the application by linking the SIMCA-Q library. For instance, to generate an executable named *sqsample*:
 ```
-g++ -L/usr/lib64 -rpath=/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o-lsimcaq
+g++ -L/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o -lsimcaq
 ```
 
 ### Using *Makefiles*
