@@ -26,11 +26,32 @@ When compiling, or actually during the previous step called preprocessing, the G
 g++ -I<headers_folder> ...
 ```
 
-To build an executable application, after compiling/assemblying the code you would need to link the resulting object file(s) with the SIMCA-Q shared library. As mentioned above, at least in latest Ubuntu versions you will find the library in */usr/lib64/*, which is not at the time of writing  this guide a standard location where GNU compilers will look for libraries. Thus, at the time of linking you will need to explicetly provide the location of the library. You can do it by passing the *-L<library_folder>* flag. You will actually need to pass the name of the SIMCA-Q shared library as well using the *-l* flag. Explicetly, you will need to pass *-lsimcaq* if the name of the library is *libsimcaq.so*. This is beacause GNU compilers already assume that libraries start with *lib* and end with *.so*.
+To build an executable application, after compiling/assemblying the code you would need to link the resulting object file(s) with the SIMCA-Q shared library. As mentioned above, at least in latest Ubuntu versions you will find the library in */usr/lib64/*, which is not at the time of writing  this guide a standard location where GNU compilers will look for libraries. Thus, at the time of linking you will need to explicetly provide the location of the library. You can do it by passing the *-L<library_folder>* flag. You will actually need to pass the name of the SIMCA-Q shared library as well using the *-l* flag. Explicetely, you will need to pass *-lsimcaq* if the name of the library is *libsimcaq.so*. This is beacause GNU compilers already assume that libraries start with *lib* and end with *.so*.
 
-Let's say that you have all the source code for your SIMCA-Q application within one single file, let's name *sqsample.cpp*. In this case you can compile and link simultaneously. For instance, to get an executable named *sqsample*, just run:
+### Simplest case: only one source code file
+
+Let's say that you have all the source code for your SIMCA-Q application within one file, let's name it *sqsample.cpp*. In this case you can compile and link simultaneously. For instance, to get an executable named *sqsample*, just run:
 ```
-g++ -o sqsample sqsample.cpp -L/usr/lib64 -lsimcaq
+g++ -o -L/usr/lib64 sqsample sqsample.cpp -lsimcaq
 ```
+
+If your code is bug-free, with this you would have successfully built your application. You could try to run it now by:
+```
+./sqsample
+```
+
+But this will fail as the SIMCA-Q library was not installed in a standard directory. This can be solved in different ways. One consist in providing the SIMCA-Q library directory by using the LD_LIBRARY_PATH environment variable. For this go to a terminal and type:
+```
+export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+```
+
+A different option is to use the *-rpath* flag during the linking stage:
+```
+g++ -o -L/usr/lib64 -rpath=/usr/lib64 sqsample sqsample.cpp -lsimcaq
+```
+
+Now you should be able to run your application.
+
+### More than one source code files
 
 In case your source code is within more than one file you will need to compile and link separately. Let's say that your main function is in a file named *main.cpp* and then you have additional classes/functions defined in *addtionalCode.h* and implemented in *additionalCode.cpp*.
