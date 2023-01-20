@@ -93,4 +93,24 @@ target: dependencies
 [BLANK LINE]
 ```
 
+*make* will only execute commands when the listed dependencies are newer than the target. In this way it ensures that rebuilds are only performed when needed. To illustrate how *make* works, let's have a look at a *Makefile* that would work for the above example:
+```
+all: sqsample
+
+sqsample: main.o additionalCode1.o additionalCode3.o additionalCode3.o
+	  g++ -L/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o -lsimcaq
+
+additionalCode1.o: additionalCode1.cpp additionalCode1.h
+		   g++ -c additionalCode1.cpp
+
+additionalCode2.o: additionalCode2.cpp additionalCode2.h
+		   g++ -c additionalCode2.cpp
+
+additionalCode3.o: additionalCode3.cpp additionalCode3.h
+		   g++ -c additionalCode3.cpp
+
+main.o: main.cpp
+	g++ -c main.cpp
+```
+
 
