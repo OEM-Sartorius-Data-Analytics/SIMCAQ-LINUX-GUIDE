@@ -81,4 +81,16 @@ g++ -L/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o addition
 
 ### Using *Makefiles*
 
+When building very large programs, we need many invocations to the compilers. However, if we only make changes only to a few source code files, it is not necessary to rebuild everything; one only needs to rebuild the object files affected by the changes and link them with the rest of object files and libraries. This can be easily automated with the [make](https://www.gnu.org/software/make/manual/) utility. Actually, *make* can fulfill several other tasks like intalling applications and clean up folders for intermediate compilation files e.g., object files, once they are not needed.
+
+To run *make* you will need a file named *Makefile* within the directory where you are running this utility. *Makefiles* are essentially a list of rules with the following structure:
+```
+target: dependencies
+<TAB>command
+<TAB>command
+<TAB>command
+....
+[BLANK LINE]
+```
+
 
