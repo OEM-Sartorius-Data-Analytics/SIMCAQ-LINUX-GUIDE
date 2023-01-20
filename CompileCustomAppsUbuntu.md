@@ -111,6 +111,14 @@ additionalCode3.o: additionalCode3.cpp additionalCode3.h
 
 main.o: main.cpp
 	g++ -c main.cpp
+
+.PHONY: clean
+clean:
+	rm *.o sqsample
 ```
+
+If we *make* without any arguments, it will execute the first target, in this case *all*. *all* has *sqsample* as a dependece. So, *make* will look for a rule to create *sqsample*. It will then find that the target *sqsample* has four dependencies, the object files *main.o*, *additionalCode1.o*, *additionalCode3.o* and *additionalCode3.o*. Subsequently, it will look for rules for these dependencies. For instance, for *additionalCode1.o* it finds the dependencies *additionalCode1.cpp* and *additionalCode1.h*. If any of these files is newer than *additionalCode1.o*, or if *additionalCode1.o* does not exist, it will execute the command *g++ -c additionalCode1.cpp*. Same will apply for all other rules.
+
+We see a final targer named *clean*. This implies that if we run *make clean*, the corresponding command will be executed i.e., it will remove all object files as well as the executable *sqsample* within the directory. The command *.PHONY: clean* just ensures that this will be the behaviour even if the have in the folder a file named *clean*.
 
 
