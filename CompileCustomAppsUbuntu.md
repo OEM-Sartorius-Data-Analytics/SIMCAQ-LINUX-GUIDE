@@ -79,4 +79,6 @@ This will generate the object files *main.o*, *additionalCode1.o*, *additionalCo
 g++ -L/usr/lib64 -rpath=/usr/lib64 -o sqsample main.o additionalCode1.o additionalCode2.o additionalCode3.o-lsimcaq
 ```
 
+### Using *Makefiles*
+
 
