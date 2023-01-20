@@ -61,4 +61,11 @@ For simplicity, in the rest of this section we will assume that you are using th
 
 ### More than one source code files
 
-In case your source code is within more than one file you will need to compile and link separately. Let's say that your main function is in a file named *main.cpp* and then you have additional classes/functions defined in *addtionalCode.h* and implemented in *additionalCode.cpp*.
+Let's say that your main function is in a file named *main.cpp* and then you have additional classes/functions defined in *addtionalCode.h* and implemented in *additionalCode.cpp*. You could actually compile and link in the same step e.g., by typing to generate an executable named *sqsample*:
+```
+g++ -L/usr/lib64 -o sqsample main.cpp additionalCode.cpp -lsimcaq
+```
+
+However, in cases where the number of source and header files increases, you will probably want to compile and like in different stages. For instance, let's assume that you have the main function in *main.cpp* and then different functions implemented in the source files *additionalCode1.cpp*, *additionalCode2.cpp* and *additionalCode3.cpp* with corresponding header files *addtionalCode1.h*, *addtionalCode2.h* and *addtionalCode3.h*. In such cases, we can instead compile every file separately into intermediate files called *object files* by passing the *-c* flag to the compiler
+
+In case your source code is within more than one file you will need to compile and link separately. 
