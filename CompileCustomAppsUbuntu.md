@@ -8,7 +8,7 @@ As mentioned in the [previous section](https://github.com/OEM-Sartorius-Data-Ana
 
 You will need a valid license file to be able to run your application.
 
-####SIMCA-Q 18
+#### SIMCA-Q 18
 
 You will get a license file from Sartorius. To run your application, copy your license file to the folder where your app executable is, or to your $HOME/.umetrics directory. 
 
