@@ -5,11 +5,22 @@
 
 ## SIMCA-Q 18
 
-bbbbbbbbbbbbbbbbbbbbbbbbbbb
+SIMCA-Q 18 is distributed as a tarball: simca-q-18.0.0.tar.gz
+
+To install SIMCA-Q, you will need to unpack the tarball. To do this, navigate to the directory where the tarball is located and run the following command:
+```
+tar xzf simca-q-18.0.0.tar.gz
+```
+
+By default, the contents of the tarball will be extracted to the *./usr/local* directory relative to the tarball's location. The libraries required to build an application can be found in *./usr/local/x86_64-gnu-linux/*, and the header files can be found in *./usr/local/include/*.
+
+Note that you can choose to extract the contents of the tarball to a different directory, as long as you specify the correct paths to the libraries and headers when building your application. For example, extracting the tarball to */opt/simca-q-18/* would be valid, as long as you update your build configuration accordingly.
+
+It's worth noting that unpacking the tarball in the root directory might have some benefits, as the */usr/local/lib* directory is typically included in the system's library search path. However, this is not required, and you can choose to unpack the tarball in any directory that you have access to.
 
 ## SIMCA-Q 17
 
-The SIMCA-Q for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions like Ubuntu work
+SIMCA-Q 17 for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions like Ubuntu work
 with the *.deb* package format instead. Whereas there are different approaches, one can convert *.rpm* to *.deb* with the [Alien](https://wiki.debian.org/Alien) software package. *Alien* can also be used to install the package on
 your Debina/Ubuntu system or, alternatively, you can do it with *dpkg*. Once installed, SIMCA-Q takes the shape of an available C library that you can use in your custom applications.
 A more detailed guide of the installation process follows:
