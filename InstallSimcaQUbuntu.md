@@ -1,11 +1,18 @@
 # Install SIMCA-Q on Debian/Ubuntu
 
+- [SIMCA-Q 18](#simca-q-18).
+- [SIMCA-Q 17](#simca-q-17).
+
+## SIMCA-Q 18
+
+##SIMCA-Q 17
+
 The SIMCA-Q for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions like Ubuntu work
 with the *.deb* package format instead. Whereas there are different approaches, one can convert *.rpm* to *.deb* with the [Alien](https://wiki.debian.org/Alien) software package. *Alien* can also be used to install the package on
 your Debina/Ubuntu system or, alternatively, you can do it with *dpkg*. Once installed, SIMCA-Q takes the shape of an available C library that you can use in your custom applications.
 A more detailed guide of the installation process follows:
 
-## Installing Alien
+### Installing Alien
 
 You will first need to add the *Universe* repository and update the package list of your system with:
 ```
@@ -18,9 +25,9 @@ Then you can install the *Alien* package with:
 sudo apt-get install alien
 ```
 
-## Installing SIMCA-Q
+### Installing SIMCA-Q
 
-### Convert the SIMCA-Q *.rpm* package to a *.deb* package and subsequent installation with *dpkg*
+#### Convert the SIMCA-Q *.rpm* package to a *.deb* package and subsequent installation with *dpkg*
 
 After purchase, you should receive from Sartorius a *.rpm* package with a name similar to *libsimcaq-17.0.0.0-1.x86_64.rpm*. In order to convert it to a *.deb* package, just type in a terminal:
 ```
@@ -40,7 +47,7 @@ Alien also allows the direct installation of .rpm packages. For this, just type 
 sudo alien -i <name of package>.rpm
 ```
 
-## After installation
+### After installation
 
 After installation, you will should be able to find SIMCA-Q header files in */usr/include/*, with names like *SQ.h*, *SIMCAQM.h*, *SIMCAQP.h*, etc. In */usr/lib64/* you should find the libraries that you will need to link to when compiling your application. It is worth to check these locations, especially that of the libraries, as the specific location might be needed when compiling your SIMCA-Q applications.
 
