@@ -5,7 +5,9 @@
 
 ## SIMCA-Q 18
 
-##SIMCA-Q 17
+bbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+## SIMCA-Q 17
 
 The SIMCA-Q for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions like Ubuntu work
 with the *.deb* package format instead. Whereas there are different approaches, one can convert *.rpm* to *.deb* with the [Alien](https://wiki.debian.org/Alien) software package. *Alien* can also be used to install the package on
