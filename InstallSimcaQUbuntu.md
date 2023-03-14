@@ -18,12 +18,17 @@ Note that you can choose to extract the contents of the tarball to a different d
 
 It's worth noting that unpacking the tarball in the root directory might have some benefits, as the */usr/local/lib* directory is typically included in the system's library search path. However, this is not required, and you can choose to unpack the tarball in any directory that you have access to.
 
+### Documentation
+
+After installation, you will find documentation for SIMCA-Q in *./usr/local/share/doc/*.
+
+### Code examples
+
+Installation will also provide code examples that you will be able to find in *./usr/local/share/libsimcaq/examples/*.
+
 ## SIMCA-Q 17
 
-SIMCA-Q 17 for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions like Ubuntu work
-with the *.deb* package format instead. Whereas there are different approaches, one can convert *.rpm* to *.deb* with the [Alien](https://wiki.debian.org/Alien) software package. *Alien* can also be used to install the package on
-your Debina/Ubuntu system or, alternatively, you can do it with *dpkg*. Once installed, SIMCA-Q takes the shape of an available C library that you can use in your custom applications.
-A more detailed guide of the installation process follows:
+SIMCA-Q 17 for Linux is distributed as a *.rpm* package and therefore can be installed directly in Linux distributions such as Red Hat Linux and CentOS by using the rpm package manager. However, Debian-based distributions such as Ubuntu use the *.deb* package format instead. To convert *.rpm* to *.deb*, you can use the *Alien* software package. With *Alien*, you can install the package on your Debian/Ubuntu system, or you can use *dpkg* to install it. Once installed, SIMCA-Q will be available as a C library that you can use in your custom applications. To get a more detailed guide on the installation process, follow the steps below.
 
 ### Installing Alien
 
